@@ -1,0 +1,15 @@
+#Node_modules
+node_modules
+
+
+
+/node-red-flow/node_modules
+
+#Node-red libs
+/node-red-flow/lib
+
+#Node-red configs and backups
+/node-red-flow/.*
+
+#Node-red flows cred
+/node-red-flow/flows_cred.json
