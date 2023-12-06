@@ -1,11 +1,76 @@
 [
     {
+        "id": "90f6c175bc785fa7",
+        "type": "tab",
+        "label": "Поток 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "a66632050dbe2743",
         "type": "tab",
         "label": "Поток 2",
         "disabled": false,
         "info": "",
         "env": []
+    },
+    {
+        "id": "8737e6c303831362",
+        "type": "tab",
+        "label": "Поток 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "aa1089a7f228d2af",
+        "type": "subflow",
+        "name": "temp",
+        "info": "",
+        "category": "sensor",
+        "in": [
+            {
+                "x": 60,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "2ce7fc0d66d68305"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 620,
+                "y": 40,
+                "wires": []
+            },
+            {
+                "x": 640,
+                "y": 120,
+                "wires": []
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "2ce7fc0d66d68305",
+        "type": "debug",
+        "z": "aa1089a7f228d2af",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 240,
+        "y": 80,
+        "wires": []
     },
     {
         "id": "3c70af1fb99fbf89",
