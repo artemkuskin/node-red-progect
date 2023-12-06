@@ -1,0 +1,15 @@
+{
+  "name": "red-temperature-node",
+  "version": "1.0.0",
+  "description": "",
+  "node-red": {
+    "nodes": {
+      "lower-case": "temperature-sensor.js"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

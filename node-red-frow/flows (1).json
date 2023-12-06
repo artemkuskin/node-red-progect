@@ -1,0 +1,195 @@
+[
+    {
+        "id": "a66632050dbe2743",
+        "type": "tab",
+        "label": "Поток 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3c70af1fb99fbf89",
+        "type": "inject",
+        "z": "a66632050dbe2743",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "150",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 230,
+        "y": 360,
+        "wires": [
+            [
+                "0a8174b57cd1b403"
+            ]
+        ]
+    },
+    {
+        "id": "c955411dcca46001",
+        "type": "debug",
+        "z": "a66632050dbe2743",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1760,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "96b822fbce53382b",
+        "type": "function",
+        "z": "a66632050dbe2743",
+        "name": "getTemperature",
+        "func": "\n\nmsg.payload = { temperature: msg.temperature } \n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 360,
+        "wires": [
+            [
+                "9146ca5de85ca659"
+            ]
+        ]
+    },
+    {
+        "id": "9e28e88be606b427",
+        "type": "http request",
+        "z": "a66632050dbe2743",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "http://localhost:3000/temp",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1470,
+        "y": 520,
+        "wires": [
+            [
+                "c955411dcca46001"
+            ]
+        ]
+    },
+    {
+        "id": "64d1bc9f8c1bf686",
+        "type": "json",
+        "z": "a66632050dbe2743",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 1190,
+        "y": 520,
+        "wires": [
+            [
+                "9e28e88be606b427"
+            ]
+        ]
+    },
+    {
+        "id": "9146ca5de85ca659",
+        "type": "switch",
+        "z": "a66632050dbe2743",
+        "name": "validTemperature",
+        "property": "temperature",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "btwn",
+                "v": "0",
+                "vt": "num",
+                "v2": "20",
+                "v2t": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 910,
+        "y": 360,
+        "wires": [
+            [
+                "d935ef0295b4b4d0"
+            ],
+            [
+                "64d1bc9f8c1bf686"
+            ]
+        ]
+    },
+    {
+        "id": "bb9790c720c3b6e1",
+        "type": "debug",
+        "z": "a66632050dbe2743",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1680,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "d935ef0295b4b4d0",
+        "type": "function",
+        "z": "a66632050dbe2743",
+        "name": "getMessage",
+        "func": "msg.payload =  'The temperature in the refrigerator is normal'\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 120,
+        "wires": [
+            [
+                "bb9790c720c3b6e1"
+            ]
+        ]
+    },
+    {
+        "id": "0a8174b57cd1b403",
+        "type": "temperature sensor",
+        "z": "a66632050dbe2743",
+        "name": "",
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "96b822fbce53382b"
+            ]
+        ]
+    }
+]
