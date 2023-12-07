@@ -4,8 +4,8 @@ const { getCurrentDateTime } = require('../utils');
 
 
 
-const saveTemperatureData = (req, res) => {
-    const { temperature } = req.body;
+const saveTemperatureData = (payload) => {
+    const temperature = payload.temperature;
     const date = getCurrentDateTime();
 
     const tempData = {
@@ -15,14 +15,12 @@ const saveTemperatureData = (req, res) => {
 
     const filePath = './file.txt';
     const jsonData = JSON.stringify(tempData);
-    console.log(req.body);
+    console.log(temperature);
     fs.appendFile(filePath, jsonData + '\n', (err) => {
         if (err) {
             console.error('Ошибка записи в файл:', err);
-            res.status(500).send('Ошибка записи в файл');
         } else {
             console.log('Данные успешно добавлены в файл:', filePath);
-            res.status(200).send('Данные успешно добавлены в файл: ' + filePath);
         }
     });
 };

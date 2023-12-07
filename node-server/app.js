@@ -1,10 +1,21 @@
-const express = require('express');
-const routes = require('./routers');
-const app = express();
-const port = 3000;
+const { saveTemperatureData } = require('./controllers');
+const aedes = require('aedes')();
+const server = require('net').createServer(aedes.handle);
 
-app.use(routes);
+const port = 1883;
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+server.listen(port, function () {
+    console.log('Aedes MQTT Broker is listening on port', port);
+});
+
+aedes.on('client', (client) => {
+    console.log('Client connected:', client.id);
+});
+
+
+
+aedes.on('publish', (packet, client) => {
+    if (client) {
+        saveTemperatureData(JSON.parse(packet.payload));
+    }
 });
